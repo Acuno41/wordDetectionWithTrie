@@ -1,3 +1,7 @@
+class Node():
+    def __init__(self):
+        self.children = {}
+        self.isEnd = False
 
 class Trie:
 
@@ -11,7 +15,7 @@ class Trie:
         file = open("badWords.csv")
         self.badWordList = file.read().split("\n")
         
-        
+    
 
 
 if __name__ == "__main__":
