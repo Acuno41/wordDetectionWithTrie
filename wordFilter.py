@@ -25,6 +25,7 @@ class Trie:
 
     def insert(self,rootNode,  badWords):
         for word in badWords:
+            word = word.lower()
             tempNode = rootNode
             for letter in word:
                 
@@ -48,6 +49,7 @@ class Trie:
 
 
     def searchInText(self, inputTxt):
+        inputTxt = inputTxt.lower()
         result = self.search(inputTxt)
         print(inputTxt)
         print(self.resultText[result], end="\n\n")  
