@@ -9,7 +9,7 @@ class Trie:
     resultText = ["No Bad Word Detected !", "Bad Word Detected !"]
 
     def __init__(self,badWordCsvFileName):
-        print("Trie Init ! ")
+        print("Trie Init !", end="\n\n")
         
         self.wordTrie = Node()
         self.badWordList = self.readBadWords(badWordCsvFileName)
@@ -49,7 +49,8 @@ class Trie:
 
     def searchInText(self, inputTxt):
         result = self.search(inputTxt)
-        print(self.resultText[result])  
+        print(inputTxt)
+        print(self.resultText[result], end="\n\n")  
 
 
 if __name__ == "__main__":
