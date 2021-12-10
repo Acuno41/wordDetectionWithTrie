@@ -6,7 +6,8 @@ class Node():
 class Trie:
 
     badWordList = []
-    
+    resultText = ["No Bad Word Detected !", "Bad Word Detected !"]
+
     def __init__(self,badWordCsvFileName):
         print("Trie Init ! ")
         
@@ -23,7 +24,6 @@ class Trie:
         return Node()
 
     def insert(self,rootNode,  badWords):
-        
         for word in badWords:
             tempNode = rootNode
             for letter in word:
@@ -33,16 +33,34 @@ class Trie:
                 
                 tempNode = tempNode.children[letter]
             tempNode.isEnd = True
-                
-            
-        
-            
-     
-        
+
     
+    def search(self, inputTxt):
+        tempTrie = self.wordTrie
+        for letter in inputTxt:
+            if not(letter in tempTrie.children.keys()):
+                tempTrie = self.wordTrie
+                continue
+            tempTrie = tempTrie.children[letter]
+            if tempTrie.isEnd: return tempTrie.isEnd
+            
+        return tempTrie.isEnd
+
+
+    def searchInText(self, inputTxt):
+        result = self.search(inputTxt)
+        print(self.resultText[result])  
 
 
 if __name__ == "__main__":
     
     filterTrie = Trie("badWords.csv")
+
+    inputTxt = "this is the dumbest thought i've ever seen"
+    filterTrie.searchInText(inputTxt)
+
+    inputTxt = "this is the most beautiful thing i've ever seen"
+    filterTrie.searchInText(inputTxt)
+
+    
     
