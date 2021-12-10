@@ -10,13 +10,33 @@ class Trie:
     def __init__(self,badWordCsvFileName):
         print("Trie Init ! ")
         
-        self.rootNode = Node()
+        self.wordTrie = Node()
         self.badWordList = self.readBadWords(badWordCsvFileName)
+        self.insert(self.wordTrie, self.badWordList)
         
 
     def readBadWords(self, csvFileName):
         file = open(csvFileName)
         return file.read().split("\n")
+
+    def getNode(self):
+        return Node()
+
+    def insert(self,rootNode,  badWords):
+        
+        for word in badWords:
+            tempNode = rootNode
+            for letter in word:
+                
+                if not(letter in tempNode.children.keys()):
+                    tempNode.children[letter] = self.getNode()
+                
+                tempNode = tempNode.children[letter]
+            tempNode.isEnd = True
+                
+            
+        
+            
      
         
     
