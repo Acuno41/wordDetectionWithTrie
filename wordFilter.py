@@ -6,19 +6,23 @@ class Node():
 class Trie:
 
     badWordList = []
-    def __init__(self):
+    
+    def __init__(self,badWordCsvFileName):
         print("Trie Init ! ")
         
-        self.readBadWords()
+        self.rootNode = Node()
+        self.badWordList = self.readBadWords(badWordCsvFileName)
+        
 
-    def readBadWords(self):
-        file = open("badWords.csv")
-        self.badWordList = file.read().split("\n")
+    def readBadWords(self, csvFileName):
+        file = open(csvFileName)
+        return file.read().split("\n")
+     
         
     
 
 
 if __name__ == "__main__":
     
-    filter = Trie()
+    filterTrie = Trie("badWords.csv")
     
